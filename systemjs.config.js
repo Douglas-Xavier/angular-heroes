@@ -23,7 +23,7 @@
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
       // outras libs
       'rxjs':                      'npm:rxjs',
-      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
     },
     // diz ao System loader como carregar as coisas quando não encontrar um nome de arquivo ou extensão
     packages: {
@@ -32,10 +32,6 @@
         defaultExtension: 'js'
       },
       rxjs: {
-        defaultExtension: 'js'
-      },
-      'angular-in-memory-web-api': {
-        main: './index.js',
         defaultExtension: 'js'
       }
     }
