@@ -4,6 +4,7 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
+import './rxjs-extensions';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -13,6 +14,7 @@ import { AppComponent }         from './app.component';
 import { DashboardComponent }   from './dashboard.component';
 import { HeroesComponent }      from './heroes.component';
 import { HeroDetailComponent }  from './hero-detail.component';
+import { HeroSearchComponent }  from './hero-search.component';
 import { HeroService }          from './hero.service';
 
 @NgModule({
@@ -28,6 +30,7 @@ import { HeroService }          from './hero.service';
     DashboardComponent,
     HeroDetailComponent,
     HeroesComponent,
+    HeroSearchComponent,
   ],
   providers: [ HeroService ],
   bootstrap: [ AppComponent ]

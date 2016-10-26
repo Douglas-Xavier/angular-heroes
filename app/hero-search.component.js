@@ -22,16 +22,22 @@ var HeroSearchComponent = (function () {
     HeroSearchComponent.prototype.search = function (term) {
         this.searchTerms.next(term);
     };
-    HeroSearchComponent.prototype.ngOninit = function () {
+    HeroSearchComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.heroes = this.searchTerms
             .debounceTime(300)
             .distinctUntilChanged()
-            .switchMap(function (term) { return term ? _this.heroSearchService.search(term) : Observable_1.Observable.of([]); })
+            .switchMap(function (term) { return term ?
+            _this.heroSearchService.search(term)
+            : Observable_1.Observable.of([]); })
             .catch(function (error) {
             console.log(error);
-            Observable_1.Observable.of([]);
+            return Observable_1.Observable.of([]);
         });
+    };
+    HeroSearchComponent.prototype.gotoDetail = function (hero) {
+        var link = ['/detail', hero.id];
+        this.router.navigate(link);
     };
     HeroSearchComponent = __decorate([
         core_1.Component({
@@ -39,7 +45,7 @@ var HeroSearchComponent = (function () {
             selector: 'hero-search',
             templateUrl: 'hero-search.component.html',
             styleUrls: ['hero-search.component.css'],
-            providers: [hero_search_service_1.HeroSearchService],
+            providers: [hero_search_service_1.HeroSearchService]
         }), 
         __metadata('design:paramtypes', [hero_search_service_1.HeroSearchService, router_1.Router])
     ], HeroSearchComponent);

@@ -11,7 +11,7 @@ import { Hero } from './hero';
     selector: 'hero-search',
     templateUrl: 'hero-search.component.html',
     styleUrls: ['hero-search.component.css'],
-    providers: [HeroSearchService],
+    providers: [HeroSearchService]
 })
 
 export class HeroSearchComponent implements OnInit {
@@ -28,14 +28,21 @@ export class HeroSearchComponent implements OnInit {
         this.searchTerms.next(term);
     }
     
-    ngOninit(): void{
+    ngOnInit(): void{
         this.heroes = this.searchTerms
             .debounceTime(300)
             .distinctUntilChanged()
-            .switchMap(term => term ? this.heroSearchService.search(term): Observable.of<Hero[]>([]))
+            .switchMap(term => term ? 
+            this.heroSearchService.search(term)
+            : Observable.of<Hero[]>([]))
             .catch(error => {
                 console.log(error);
-                Observable.of<Hero[]>([]);
+                return Observable.of<Hero[]>([]);
             });
+    }
+
+    gotoDetail(hero: Hero):void{
+        let link =  ['/detail', hero.id];
+        this.router.navigate(link);
     }
 }
